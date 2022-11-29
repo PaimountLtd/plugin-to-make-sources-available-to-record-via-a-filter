@@ -1,5 +1,5 @@
 How to use:
-- Apply this filter to the video source you want to capture and configure the settings below. Then, use the fun start is called - stop when you want to stop
+- Apply this filter to the video source you want to capture and configure the settings below. Then, use func_start to start - stop when you want to stop
 
 Settings
 - "path": directory where the file goes
