@@ -34,6 +34,7 @@ static void source_record_filter_offscreen_render(void *data, uint32_t cx, uint3
 
 	if (filter->m_closing)
 		return;
+	
 	if (!obs_source_enabled(filter->m_source))
 		return;
 
