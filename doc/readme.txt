@@ -3,7 +3,7 @@ How to use:
 
 Settings
 - "path": directory where the file goes
-- "filename": name of the file, be sure to append the .format such as .flv etc
+- "filename": name of the file, be sure to append the .format such as .flv etc, use to get a list of options
 - "audio_track": 1 to MAX_AUDIO_MIXES
 - "audio_source": name of the source where audio comes from 
 - "encoder": from api_get_available_encoders
@@ -15,5 +15,8 @@ Functions
 - func_stop("")
 	Stops recording
 
-- func_get_available_formats("")
+- func_get_available_encoders("")
 	Returns a list of valid encoder formats for the host machine
+	
+- func_get_available_formats("")
+	Returns a list of valid file formats for "filename" setting
