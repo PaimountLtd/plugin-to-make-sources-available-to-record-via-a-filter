@@ -127,7 +127,6 @@ static void *source_record_filter_create(obs_data_t *settings, obs_source_t *sou
 	SourceRecordContext *context = new SourceRecordContext{};
 	context->m_source = source;
 	context->m_texrender = gs_texrender_create(GS_BGRA, GS_ZS_NONE);
-	context->m_enableHotkey = OBS_INVALID_HOTKEY_PAIR_ID;
 
 	source_record_filter_update(context, settings);
 	obs_add_main_render_callback(source_record_filter_offscreen_render, context);
@@ -156,9 +155,6 @@ static void source_record_filter_destroy(void *data)
 	context->join();
 
 	video_output_stop(context->m_video_output);
-
-	if (context->m_enableHotkey != OBS_INVALID_HOTKEY_PAIR_ID)
-		obs_hotkey_pair_unregister(context->m_enableHotkey);
 
 	video_t *o = context->m_video_output;
 	context->m_video_output = NULL;
@@ -225,11 +221,6 @@ static void source_record_filter_tick(void *data, float seconds)
 	obs_source_t *parent = obs_filter_get_parent(context->m_source);
 	if (!parent)
 		return;
-
-	if (context->m_enableHotkey == OBS_INVALID_HOTKEY_PAIR_ID)
-		context->m_enableHotkey = obs_hotkey_pair_register_source(parent, "source_record.enable", obs_module_text("SourceRecordEnable"),
-									  "source_record.disable", obs_module_text("SourceRecordDisable"),
-									  source_record_enable_hotkey, source_record_disable_hotkey, context, context);
 
 	uint32_t width = obs_source_get_width(parent);
 	width += (width & 1);
