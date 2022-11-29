@@ -124,12 +124,6 @@ static void source_record_filter_defaults(obs_data_t *settings)
 
 static void *source_record_filter_create(obs_data_t *settings, obs_source_t *source)
 {
-	AllocConsole();
-	freopen("conin$", "r", stdin);
-	freopen("conout$", "w", stdout);
-	freopen("conout$", "w", stderr);
-	printf("Debugging Window:\n");
-
 	SourceRecordContext *context = new SourceRecordContext{};
 	context->m_source = source;
 	context->m_texrender = gs_texrender_create(GS_BGRA, GS_ZS_NONE);
