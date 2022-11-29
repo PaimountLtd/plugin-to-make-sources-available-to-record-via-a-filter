@@ -283,8 +283,7 @@ static void source_record_filter_tick(void *data, float seconds)
 	}
 }
 
-
-static bool list_add_audio_sources(void *data, obs_source_t *source)
+/*static bool list_add_audio_sources(void *data, obs_source_t *source)
 {
 	obs_property_t *p = reinterpret_cast<obs_property_t *>(data);
 	const uint32_t flags = obs_source_get_output_flags(source);
@@ -294,7 +293,7 @@ static bool list_add_audio_sources(void *data, obs_source_t *source)
 		obs_property_list_add_string(p, obs_source_get_name(source), obs_source_get_name(source));
 	}
 	return true;
-}
+}*/
 
 /*static obs_properties_t *source_record_filter_properties(void *data)
 {
