@@ -75,10 +75,12 @@ static void source_record_filter_offscreen_render(void *data, uint32_t cx, uint3
 		gs_stagesurface_destroy(filter->m_stagesurface);
 		filter->m_stagesurface = NULL;
 	}
+	
 	if (filter->m_video_data) {
 		gs_stagesurface_unmap(filter->m_stagesurface);
 		filter->m_video_data = NULL;
 	}
+	
 	if (!filter->m_stagesurface)
 		filter->m_stagesurface = gs_stagesurface_create(filter->m_width, filter->m_height, GS_BGRA);
 
@@ -203,11 +205,15 @@ static bool source_record_disable_hotkey(void *data, obs_hotkey_pair_id id, obs_
 {
 	UNUSED_PARAMETER(id);
 	UNUSED_PARAMETER(hotkey);
+	
 	SourceRecordContext *context = reinterpret_cast<SourceRecordContext *>(data);
+	
 	if (!pressed)
 		return false;
+	
 	if (!obs_source_enabled(context->m_source))
 		return false;
+	
 	obs_source_set_enabled(context->m_source, false);
 	return true;
 }
@@ -215,6 +221,7 @@ static bool source_record_disable_hotkey(void *data, obs_hotkey_pair_id id, obs_
 static void source_record_filter_tick(void *data, float seconds)
 {
 	UNUSED_PARAMETER(seconds);
+	
 	SourceRecordContext *context = reinterpret_cast<SourceRecordContext *>(data);
 	if (context->m_closing)
 		return;
@@ -263,7 +270,7 @@ static void source_record_filter_tick(void *data, float seconds)
 		context->stop_fileOutput();
 		context->m_restart = false;
 
-		// If not outputting, yet the source is enabled, then begin
+	// If not outputting, yet the source is enabled, then begin
 	} else if (!context->m_output_active && obs_source_enabled(context->m_source)) {
 
 		if (context->m_start_file_output_thread.second || !context->m_video_output) {
