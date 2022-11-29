@@ -296,7 +296,7 @@ static bool list_add_audio_sources(void *data, obs_source_t *source)
 	return true;
 }
 
-static obs_properties_t *source_record_filter_properties(void *data)
+/*static obs_properties_t *source_record_filter_properties(void *data)
 {
 	obs_properties_t *props = obs_properties_create();
 
@@ -361,7 +361,7 @@ static obs_properties_t *source_record_filter_properties(void *data)
 	}
 
 	return props;
-}
+}*/
 
 static void source_record_filter_render(void *data, gs_effect_t *effect)
 {
@@ -395,7 +395,7 @@ bool obs_module_load(void)
 	info.get_defaults = source_record_filter_defaults;
 	info.video_render = source_record_filter_render;
 	info.video_tick = source_record_filter_tick;
-	info.get_properties = source_record_filter_properties;
+	//info.get_properties = source_record_filter_properties;
 	info.filter_remove = source_record_filter_filter_remove;
 
 	obs_register_source(&info);
